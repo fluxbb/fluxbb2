@@ -31,6 +31,15 @@ if (!FluxBB\Core::isInstalled())
 }
 
 
+// Doing routes
+// TODO: create config file for custom subfolder location
+use Respect\Rest\Router;
+
+$app['router'] = new Router('/fluxfork');
+$app['router']->isAutoDispatched = false;
+ 
+include('routes.php');
+
 // Initialize paths and config
 use Illuminate\Filesystem;
 use Illuminate\Config\FileLoader;
@@ -73,7 +82,6 @@ $services = array(
 	'Illuminate\FilesystemServiceProvider',
 	'Illuminate\Hashing\HashServiceProvider',
 	'Illuminate\Pagination\PaginationServiceProvider',
-	'FluxBB\Services\RoutingService',
 	'FluxBB\Services\SessionService',
 	'Illuminate\Translation\TranslationServiceProvider',
 	'Illuminate\Validation\ValidationServiceProvider',
@@ -87,6 +95,8 @@ foreach ($services as $service)
 	$app->register(new $service($app));
 }
 
+
+ 
 Illuminate\Support\Facade::setFacadeApplication($app);
 FluxBB\Models\Base::setCacheStore($app['cache']);
 

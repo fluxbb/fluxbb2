@@ -57,26 +57,8 @@ class Application extends Container
 		{
 			$this->boot();
 		}
-
-		$response = $this->prepareResponse($this->dispatch($this['request']));
-
-		$response->prepare($this['request'])
-			->send();
-	}
-
-	protected function prepareResponse($response)
-	{
-		if ($response instanceof Response)
-		{
-			return $response;
-		}
-
-		return new Response($response);
-	}
-
-	protected function dispatch(Request $request)
-	{
-		return $this['router']->dispatch($request);
+		
+		print $this['router']->run();
 	}
 
 	protected function boot()
