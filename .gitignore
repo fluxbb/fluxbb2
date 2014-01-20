@@ -1,8 +1,0 @@
-/bootstrap/compiled.php
-/vendor
-composer.phar
-composer.lock
-.DS_Store
-app/config/fluxbb.php
-public/packages
-.vagrant
